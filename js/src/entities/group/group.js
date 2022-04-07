@@ -35,12 +35,12 @@ export function GroupMedium(props) {
     return (
         <Card>
             <Card.Header>
-                <Card.Title>Skupičo<b><GroupSmall {...props} /></b></Card.Title>
+                <Card.Title>AOisdjnaisubd iasubdia <b><GroupSmall {...props} /></b></Card.Title>
             </Card.Header>
             <Card.Body>
-                <b>Fakulta:</b> {faculties} <br />
-                <b>Ročník:</b> {props.grade} <br />
-                <b>Program:</b> <ProgramSmall id={1} name={'Kybernetická bezpečnost'} />
+                <b>address:</b> {faculties} <br />
+                <b>Rofaddfčník:</b> {props.grade} <br />
+                <b>Progasdasdasdasdasdram:</b> <ProgramSmall id={1} name={'Kybernetická bezpečnost'} />
             </Card.Body>
         </Card>
     )
