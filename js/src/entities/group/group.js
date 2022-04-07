@@ -35,7 +35,7 @@ export function GroupMedium(props) {
     return (
         <Card>
             <Card.Header>
-                <Card.Title>Skupina <b><GroupSmall {...props} /></b></Card.Title>
+                <Card.Title>Skupičo<b><GroupSmall {...props} /></b></Card.Title>
             </Card.Header>
             <Card.Body>
                 <b>Fakulta:</b> {faculties} <br />
