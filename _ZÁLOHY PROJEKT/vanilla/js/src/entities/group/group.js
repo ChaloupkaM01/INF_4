@@ -3,7 +3,6 @@ import { Link, useParams } from "react-router-dom";
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import Button from 'react-bootstrap/Button'
 import { useEffect, useState } from "react";
 
 import image from '../rozvrhSnimek.png';
@@ -178,16 +177,9 @@ function SeznamPredmetu(props) {
 function SeznamStudentu(props) {
     let students = props.students.map((item) => (<li key={item.id}><StudentSmall key={item.id} {...item} appRoot={props.appRoot} /></li>))
     return (
-        <div className="card mb-4">
+        <div className="card mb-3">
             <Card.Header>
-                <Row>
-                    <Col>
-                        <Card.Title>Studenti</Card.Title>
-                    </Col>
-                    <Col>
-                        <Button variant="outline-primary" size="small">Upravit</Button>
-                    </Col>
-                </Row> 
+                <Card.Title>Studenti</Card.Title>
             </Card.Header>
             <Card.Body>
                 <ul>
