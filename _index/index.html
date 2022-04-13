@@ -80,39 +80,52 @@
             )
     }
 
-    function PageMedium(props) {
+    function StudentSearch(props) {
         return (
             <Card>
-                <CardHeader>Další informace</CardHeader>
-                <CardBody>informace</CardBody>
-                <CardFooter>Patička</CardFooter>
+                <CardHeader>Vyhledávání studenta</CardHeader>
+                <CardBody>Zde bude vyhledávní studentů</CardBody>
             </Card>
         )
     }
 
     function GroupStudents(props) {
+        let students = props.students.map(
+            (item,index) => (
+                <ListGroupItem key={index}>{item.name} 
+                    <button className="btn-primary" onClick={()=>props.onRemove(item.id)}>-</button>
+                </ListGroupItem>)
+        )
         return (
             <ListGroup>
-                
+                {students}
             </ListGroup>
         )
     }
 
     function PageLarge(props) {
+        const [members, setMembers] = React.useState(props.students) 
+        const deleteStudent = (id) => {
+            alert(id)
+            let selectedStudents = members.filter(
+                (item) => item.id !== id
+            )
+            setMembers(selectedStudents)
+        }
         return (
             <Card>
                 <CardHeader>Úprava studentů skupiny: {props.name}</CardHeader>
                 <CardBody>
                     <Row>
                         <Col>
-                            <PageMedium {...props} />
+                            <StudentSearch {...props} />
                         </Col>
                             
-                        <Col>        
-                            <ListGroup {...props} />
+                        <Col>                                  
+                            <GroupStudents students={members} onRemove={deleteStudent} />
                         </Col>
-                    </Row>
-                
+
+                    </Row>          
                 </CardBody>
             </Card>
         )
