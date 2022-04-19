@@ -17,7 +17,7 @@
 
     </head>
 <body>
-
+  
 <div class="container-fluid p-2">
     <div class="row">
         <div id="root"></div>
@@ -80,9 +80,18 @@
             )
     }
 
-    function Button(props) {
+    function ButtonAdd(props) {
         return (
-            <button className="btn btn-outline-dark btn-sm" 
+            <button className="btn btn-outline-success btn-sm" 
+                    onClick={props.onClick}> 
+                    { props.children } 
+            </button>
+            )
+    }
+
+    function ButtonRemove(props) {
+        return (
+            <button className="btn btn-outline-danger btn-sm" 
                     onClick={props.onClick}> 
                     { props.children } 
             </button>
@@ -106,7 +115,7 @@
                     </Col>
 
                     <Col size="col-md-auto mb-1">
-                        <Button onClick={()=>props.onRemove(item.id, item.name)}>+</Button>
+                        <ButtonAdd onClick={()=>props.onAdd(item.id, item.name)}>+</ButtonAdd>
                     </Col>
                 </Row>
                 )
@@ -128,7 +137,7 @@
                     </Col>
 
                     <Col size="col-md-auto mb-1">
-                        <Button onClick={()=>props.onRemove(item.id, item.name)}>-</Button>
+                        <ButtonRemove onClick={()=>props.onRemove(item.id, item.name)}>-</ButtonRemove>
                     </Col>
                 </Row>
                 )
@@ -150,6 +159,11 @@
             )
             setMembers(selectedStudents)
         }
+
+        const addStudent = (id, name) => {
+            alert("Student/ka " + name + " bude přidán/a.")
+        }
+
         return (
             <Card>
                 <CardHeader>Úprava studentů skupiny: {props.name}</CardHeader>
@@ -161,7 +175,7 @@
                     </Row>
                     <Row>
                         <Col>
-                            <StudentSearch {...props} />
+                            <StudentSearch {...props} onAdd={addStudent} />
                         </Col>
                             
                         <Col>                                  
