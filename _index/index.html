@@ -80,6 +80,12 @@
             )
     }
 
+    function Button(props) {
+        return (
+            <button className="btn btn-outline-dark btn-sm" onClick={props.onClick}>  { props.children } </button>
+            )
+    }
+
     function StudentSearch(props) {
         return (
             <Card>
@@ -92,16 +98,22 @@
     function GroupStudents(props) {
         let students = props.students.map(
             (item,index) => (
-                <ListGroupItem key={index}>
-                    {item.name} 
-                    <button className="btn btn-outline-dark btn-sm" onClick={()=>props.onRemove(item.id)}>-</button>
-                </ListGroupItem>
+                <Row key={index}>
+                    <Col>
+                        {item.name} 
+                    </Col>
+
+                    <Col size="col-md-auto">
+                        <Button onClick={()=>props.onRemove(item.id)}>-</Button>
+                    </Col>
+                </Row>
                 )
         )
         return (
-            <ListGroup>
-                {students}
-            </ListGroup>
+            <Card>
+                <CardHeader>Studenti skupiny </CardHeader>
+                <CardBody> {students} </CardBody>         
+            </Card>
         )
     }
 
