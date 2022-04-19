@@ -86,15 +86,17 @@
                 <CardHeader>Vyhledávání studenta</CardHeader>
                 <CardBody>Zde bude vyhledávní studentů</CardBody>
             </Card>
-        )
+        )   
     }
 
     function GroupStudents(props) {
         let students = props.students.map(
             (item,index) => (
-                <ListGroupItem key={index}>{item.name} 
-                    <button className="btn-primary" onClick={()=>props.onRemove(item.id)}>-</button>
-                </ListGroupItem>)
+                <ListGroupItem key={index}>
+                    {item.name} 
+                    <button className="btn btn-outline-dark btn-sm" onClick={()=>props.onRemove(item.id)}>-</button>
+                </ListGroupItem>
+                )
         )
         return (
             <ListGroup>
@@ -106,7 +108,7 @@
     function PageLarge(props) {
         const [members, setMembers] = React.useState(props.students) 
         const deleteStudent = (id) => {
-            alert(id)
+            alert("Uživatel " + id + " bude odstraněn")
             let selectedStudents = members.filter(
                 (item) => item.id !== id
             )
