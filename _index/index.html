@@ -82,15 +82,39 @@
 
     function Button(props) {
         return (
-            <button className="btn btn-outline-dark btn-sm" onClick={props.onClick}>  { props.children } </button>
+            <button className="btn btn-outline-dark btn-sm" 
+                    onClick={props.onClick}> 
+                    { props.children } 
+            </button>
             )
     }
 
+    function SearchBar(props){
+        return(
+            <input className="form-control mb-3" 
+                    placeholder="Zadej jméno studenta">
+            </input>
+        )
+    }
+
     function StudentSearch(props) {
+        let allStudents = props.allStudents.map(
+            (item,index) => (
+                <Row key={index}>
+                    <Col>
+                        {item.name} 
+                    </Col>
+
+                    <Col size="col-md-auto mb-1">
+                        <Button onClick={()=>props.onRemove(item.id, item.name)}>+</Button>
+                    </Col>
+                </Row>
+                )
+            )
         return (
             <Card>
-                <CardHeader>Vyhledávání studenta</CardHeader>
-                <CardBody>Zde bude vyhledávní studentů</CardBody>
+                <CardHeader>Vyhledaní studenti</CardHeader>
+                <CardBody>{allStudents}</CardBody>
             </Card>
         )   
     }
@@ -103,8 +127,8 @@
                         {item.name} 
                     </Col>
 
-                    <Col size="col-md-auto">
-                        <Button onClick={()=>props.onRemove(item.id)}>-</Button>
+                    <Col size="col-md-auto mb-1">
+                        <Button onClick={()=>props.onRemove(item.id, item.name)}>-</Button>
                     </Col>
                 </Row>
                 )
@@ -119,8 +143,8 @@
 
     function PageLarge(props) {
         const [members, setMembers] = React.useState(props.students) 
-        const deleteStudent = (id) => {
-            alert("Uživatel " + id + " bude odstraněn")
+        const deleteStudent = (id, name) => {
+            alert("Student/ka " + name + " bude odstraněn/a.")
             let selectedStudents = members.filter(
                 (item) => item.id !== id
             )
@@ -132,13 +156,17 @@
                 <CardBody>
                     <Row>
                         <Col>
+                            <SearchBar></SearchBar>  
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
                             <StudentSearch {...props} />
                         </Col>
                             
                         <Col>                                  
                             <GroupStudents students={members} onRemove={deleteStudent} />
                         </Col>
-
                     </Row>          
                 </CardBody>
             </Card>
@@ -160,7 +188,8 @@
             { 'id': 9, 'name': 'Jiří Grau' },
             { 'id': 10, 'name': 'Teodor Velký' },
             { 'id': 11, 'name': 'Alexandr Veliký' },
-            { 'id': 22, 'name': 'Aleš Máchal' }
+            { 'id': 12, 'name': 'Aleš Máchal' },
+            { 'id': 88, 'name': 'David Svoboda' }
             ],
             'students': [
             { 'id': 5, 'name': 'Michal Mrkev' },
@@ -168,7 +197,7 @@
             { 'id': 7, 'name': 'Jiřina Stará' },
             { 'id': 8, 'name': 'Petr Filip' },
             { 'id': 11, 'name': 'Alexandr Veliký' },
-            { 'id': 22, 'name': 'Aleš Máchal' }
+            { 'id': 12, 'name': 'Aleš Máchal' }
             ]
         };
         return <PageLarge {...extraProps} {...props} />
