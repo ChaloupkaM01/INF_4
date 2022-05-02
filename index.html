@@ -154,14 +154,33 @@
         const [members, setMembers] = React.useState(props.students) 
         const deleteStudent = (id, name) => {
             alert("Student/ka " + name + " bude odstraněn/a.")
-            let selectedStudents = members.filter(
+
+            const selectedStudents = members.filter(
                 (item) => item.id !== id
             )
+
+            const selectedAllStudents = members.filter(
+                (item) => item.id === id
+            )
+
             setMembers(selectedStudents)
+            setAllMembers([...allMembers, ...selectedAllStudents])
         }
 
+        const [allMembers, setAllMembers] = React.useState(props.allStudents)
         const addStudent = (id, name) => {
-            alert("Student/ka " + name + " bude přidán/a.")
+            alert("Student/ka " + name + " bude přidán/a.")          
+
+            const selectedStudents = allMembers.filter(
+                (item) => item.id === id
+            )
+
+            const selectedAllStudents = allMembers.filter(
+                (item) => item.id !== id
+            ) 
+            
+            setAllMembers(selectedAllStudents)
+            setMembers([...members, ...selectedStudents])
         }
 
         return (
@@ -175,7 +194,7 @@
                     </Row>
                     <Row>
                         <Col>
-                            <StudentSearch {...props} onAdd={addStudent} />
+                            <StudentSearch allStudents={allMembers} onAdd={addStudent} />
                         </Col>
                             
                         <Col>                                  
@@ -195,14 +214,8 @@
             { 'id': 2, 'name': 'Pavel Motol' },
             { 'id': 3, 'name': 'Dominik Vaněk' },
             { 'id': 4, 'name': 'Andrea Svobodova' },
-            { 'id': 5, 'name': 'Michal Mrkev' },
-            { 'id': 6, 'name': 'Patrik Němý' },
-            { 'id': 7, 'name': 'Jiřina Stará' },
-            { 'id': 8, 'name': 'Petr Filip' },
             { 'id': 9, 'name': 'Jiří Grau' },
-            { 'id': 10, 'name': 'Teodor Velký' },
-            { 'id': 11, 'name': 'Alexandr Veliký' },
-            { 'id': 12, 'name': 'Aleš Máchal' },
+            { 'id': 10, 'name': 'Teodor Velký' },     
             { 'id': 88, 'name': 'David Svoboda' }
             ],
             'students': [
