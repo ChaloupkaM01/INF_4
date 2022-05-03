@@ -151,7 +151,7 @@
         )
     }
 
-    function PageLarge(props) {
+    function EditGroupStudents(props) {
         const [members, setMembers] = React.useState(props.students) 
         const deleteStudent = (id, name) => {
             alert("Student/ka " + name + " bude odstraněn/a.")
@@ -168,7 +168,7 @@
             setAllMembers([...allMembers, ...selectedAllStudents])
         }
 
-        const [allMembers, setAllMembers] = React.useState(props.allStudents)
+        const [allMembers, setAllMembers] = React.useState([])
         const addStudent = (id, name) => {
             alert("Student/ka " + name + " bude přidán/a.")          
 
@@ -184,38 +184,53 @@
             setMembers([...members, ...selectedStudents])
         }
 
-        const [inputText, setInputText] = React.useState("")
-        const inputHandler = (inputTxt) => {         
-            var lowerCase = inputTxt.toLowerCase()
-            setInputText(lowerCase)
+        const inputHandler = (inputTxt) => {
+            if(inputTxt.length < 3){
+                inputTxt = "";
+            }     
+            
+            const namesToFilter = props.allStudents.filter(
+                (item) => !members.includes(item)
+            )
+
+            const filteredNames = namesToFilter.filter(
+                    (item) => item.name.toLowerCase().includes(inputTxt.toLowerCase())
+            ) 
+            setAllMembers(filteredNames)
         }
 
         return (
+            <CardBody>
+                <Row>
+                    <Col>
+                        <SearchBar onChange={inputHandler}/>  
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <StudentSearch allStudents={allMembers} onAdd={addStudent} />
+                    </Col>
+                            
+                    <Col>                                  
+                        <GroupStudents students={members} onRemove={deleteStudent} />
+                    </Col>
+                </Row>     
+            </CardBody>  
+        )
+    }
+
+    function PageLarge(props) {
+        return (
             <Card>
                 <CardHeader>Úprava studentů skupiny: {props.name}</CardHeader>
-                <CardBody>
-                    <Row>
-                        <Col>
-                            <SearchBar onChange={inputHandler}/>  
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col>
-                            <StudentSearch allStudents={allMembers} onAdd={addStudent} />
-                        </Col>
-                            
-                        <Col>                                  
-                            <GroupStudents students={members} onRemove={deleteStudent} />
-                        </Col>
-                    </Row>          
-                </CardBody>
+                <EditGroupStudents {...props} />
             </Card>
         )
     }
 
     function PageStoryBook(props) {
         const extraProps = {
-            'name': "Kybernetická bezpečnost",
+            'name': "22-5KB1",
             'allStudents': [
             { 'id': 1, 'name': 'Honza Bernard' },
             { 'id': 2, 'name': 'Pavel Motol' },
