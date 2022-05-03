@@ -100,7 +100,8 @@
 
     function SearchBar(props){
         return(
-            <input className="form-control mb-3" 
+            <input className="form-control mb-3"
+                    onChange={ (e) => props.onChange(e.target.value)} 
                     placeholder="Zadej jméno studenta">
             </input>
         )
@@ -183,13 +184,19 @@
             setMembers([...members, ...selectedStudents])
         }
 
+        const [inputText, setInputText] = React.useState("")
+        const inputHandler = (inputTxt) => {         
+            var lowerCase = inputTxt.toLowerCase()
+            setInputText(lowerCase)
+        }
+
         return (
             <Card>
                 <CardHeader>Úprava studentů skupiny: {props.name}</CardHeader>
                 <CardBody>
                     <Row>
                         <Col>
-                            <SearchBar></SearchBar>  
+                            <SearchBar onChange={inputHandler}/>  
                         </Col>
                     </Row>
                     <Row>
