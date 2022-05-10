@@ -44,18 +44,6 @@
         )
     }
 
-    function ListGroup(props){
-        return (
-            <div className="list-group"> {props.children} </div>
-        )
-    }
-
-    function ListGroupItem(props){
-        return (
-            <div className="list-group-item"> {props.children} </div>
-        )
-    }
-
     function CardHeader(props) {
         return (
             <div className="card-header" > { props.children } </div>
@@ -65,12 +53,6 @@
     function CardBody(props) {
         return (
             <div className="card-body" > { props.children } </div>
-            )
-    }
-
-    function CardFooter(props) {
-        return (
-            <div className="card-footer" > { props.children } </div>
             )
     }
 
@@ -107,7 +89,7 @@
         )
     }
 
-    function StudentSearch(props) {
+    function SearchedStudentsCard(props) {
         let allStudents = props.allStudents.map(
             (item,index) => (
                 <Row key={index}>
@@ -129,7 +111,7 @@
         )   
     }
 
-    function GroupStudents(props) {
+    function GroupStudentsCard(props) {
         let students = props.students.map(
             (item,index) => (
                 <Row key={index}>
@@ -151,7 +133,7 @@
         )
     }
 
-    function EditGroupStudents(props) {
+    function EditStudyGroup(props) {
         const [members, setMembers] = React.useState(props.students) 
         const deleteStudent = (id, name) => {
             alert("Student/ka " + name + " bude odstraněn/a.")
@@ -165,7 +147,6 @@
             )
 
             setMembers(selectedStudents)
-            setAllMembers([...allMembers, ...selectedAllStudents])
         }
 
         const [allMembers, setAllMembers] = React.useState([])
@@ -187,44 +168,48 @@
         const inputHandler = (inputTxt) => {
             if(inputTxt.length < 3){
                 inputTxt = "";
-            }     
-            
-            const namesToFilter = props.allStudents.filter(
-                (item) => !members.includes(item)
-            )
+                setAllMembers([])
+            }
 
-            const filteredNames = namesToFilter.filter(
+            else{
+                const namesToFilter = props.allStudents.filter(
+                    (item) => !members.includes(item)
+                )
+
+                const filteredNames = namesToFilter.filter(
                     (item) => item.name.toLowerCase().includes(inputTxt.toLowerCase())
-            ) 
-            setAllMembers(filteredNames)
+                )
+
+                setAllMembers(filteredNames)
+            }       
         }
 
         return (
-            <CardBody>
-                <Row>
-                    <Col>
-                        <SearchBar onChange={inputHandler}/>  
-                    </Col>
-                </Row>
-                <Row>
-                    <Col>
-                        <StudentSearch allStudents={allMembers} onAdd={addStudent} />
-                    </Col>
-                            
-                    <Col>                                  
-                        <GroupStudents students={members} onRemove={deleteStudent} />
-                    </Col>
-                </Row>     
-            </CardBody>  
+            <Card>
+                <CardHeader>Úprava studentů skupiny: {props.name}</CardHeader>
+                <CardBody>
+                    <Row>
+                        <Col>
+                            <SearchBar onChange={inputHandler}/>  
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <SearchedStudentsCard allStudents={allMembers} onAdd={addStudent} />
+                        </Col>
+                                
+                        <Col>                                  
+                            <GroupStudentsCard students={members} onRemove={deleteStudent} />
+                        </Col>
+                    </Row>     
+                </CardBody>  
+            </Card>
         )
     }
 
     function PageLarge(props) {
-        return (
-            <Card>
-                <CardHeader>Úprava studentů skupiny: {props.name}</CardHeader>
-                <EditGroupStudents {...props} />
-            </Card>
+        return (         
+                <EditStudyGroup {...props} />          
         )
     }
 
@@ -236,8 +221,14 @@
             { 'id': 2, 'name': 'Pavel Motol' },
             { 'id': 3, 'name': 'Dominik Vaněk' },
             { 'id': 4, 'name': 'Andrea Svobodova' },
+            { 'id': 5, 'name': 'Michal Mrkev' },
+            { 'id': 6, 'name': 'Patrik Němý' },
+            { 'id': 7, 'name': 'Jiřina Stará' },
+            { 'id': 8, 'name': 'Petr Filip' },
             { 'id': 9, 'name': 'Jiří Grau' },
             { 'id': 10, 'name': 'Teodor Velký' },     
+            { 'id': 11, 'name': 'Alexandr Veliký' },
+            { 'id': 12, 'name': 'Aleš Máchal' },
             { 'id': 88, 'name': 'David Svoboda' }
             ],
             'students': [
