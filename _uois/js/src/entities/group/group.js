@@ -181,8 +181,10 @@ function SeznamStudentu(props) {
     return (
         <div className="card mb-3">
             <Card.Header>
-                <Card.Title>Studenti</Card.Title>
-                <ButtonAdd>Úprava studijní skupiny</ButtonAdd>
+                <Row>
+                    <Col><Card.Title>Studenti</Card.Title></Col>
+                    <Col className="d-flex justify-content-end"><ButtonAdd className="d-flex justify-content-end">Upravit</ButtonAdd></Col>              
+                </Row>          
             </Card.Header>
             <Card.Body>
                 <ul>

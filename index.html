@@ -44,6 +44,12 @@
         )
     }
 
+    function CardFooter(props) {
+        return (
+            <div className="card-footer" > { props.children } </div>
+            )
+    }
+
     function CardHeader(props) {
         return (
             <div className="card-header" > { props.children } </div>
@@ -64,7 +70,7 @@
 
     function ButtonAdd(props) {
         return (
-            <button className="btn btn-outline-success btn-sm" 
+            <button className="btn btn-outline-success btn-sm ml-1" 
                     onClick={props.onClick}> 
                     { props.children } 
             </button>
@@ -133,7 +139,7 @@
         )
     }
 
-    function EditStudyGroup(props) {
+    function EditStudyGroup(props) {    
         const [members, setMembers] = React.useState(props.students) 
         const deleteStudent = (id, name) => {
             alert("Student/ka " + name + " bude odstraněn/a.")
@@ -183,7 +189,11 @@
                 setAllMembers(filteredNames)
             }       
         }
-
+        
+        if (props.show){
+            return null;
+        }
+        console.log(5115)
         return (
             <Card>
                 <CardHeader>Úprava studentů skupiny: {props.name}</CardHeader>
@@ -202,19 +212,29 @@
                             <GroupStudentsCard students={members} onRemove={deleteStudent} />
                         </Col>
                     </Row>     
-                </CardBody>  
+                </CardBody>
+                <CardFooter>
+                    <ButtonAdd>Uložit</ButtonAdd>
+                    <ButtonRemove>Zrušit</ButtonRemove>
+                </CardFooter>  
             </Card>
         )
     }
 
-    function PageLarge(props) {
-        return (         
-                <EditStudyGroup {...props} />          
+    function PageLarge(props) {      
+        const [show, toggleShow] = React.useState(props.editVisible)
+     
+        return (  
+            <Card>   
+                <ButtonAdd onClick={() => toggleShow(!show)} >Show</ButtonAdd>   
+                <EditStudyGroup {...props} />     
+            </Card>     
         )
     }
 
     function PageStoryBook(props) {
         const extraProps = {
+            'editVisible': false,
             'name': "22-5KB1",
             'allStudents': [
             { 'id': 1, 'name': 'Honza Bernard' },

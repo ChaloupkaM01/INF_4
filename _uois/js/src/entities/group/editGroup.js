@@ -38,7 +38,7 @@ function SearchedStudentsCard(props) {
                     {item.name} 
                 </Col>
 
-                <Col size="col-md-auto mb-1">
+                <Col className="d-flex justify-content-end">
                     <ButtonAdd onClick={()=>props.onAdd(item.id, item.name)}>+</ButtonAdd>
                 </Col>
             </Row>
@@ -60,7 +60,7 @@ function GroupStudentsCard(props) {
                     {item.name} 
                 </Col>
 
-                <Col size="col-md-auto mb-1">
+                <Col className="d-flex justify-content-end">
                     <ButtonRemove onClick={()=>props.onRemove(item.id, item.name)}>-</ButtonRemove>
                 </Col>
             </Row>
@@ -143,7 +143,11 @@ export function EditStudyGroup(props) {
                         <GroupStudentsCard students={members} onRemove={deleteStudent} />
                     </Col>
                 </Row>     
-            </Card.Body>  
+            </Card.Body>
+            <Card.Footer>
+                <ButtonAdd>Uložit</ButtonAdd>
+                <ButtonRemove>Zrušit</ButtonRemove>
+            </Card.Footer> 
         </Card>
     )
 }
