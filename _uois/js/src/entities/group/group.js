@@ -16,6 +16,8 @@ import { useQueryGQL, Loading, LoadingError } from "../index";
 import { SubjectSmall } from "../studyprogram/subject";
 import { ProgramSmall } from "../studyprogram/studyprogram";
 
+import { ButtonAdd } from "../group/editGroup";
+
 /** @module Group */
 
 export function GroupSmall(props) {
@@ -180,6 +182,7 @@ function SeznamStudentu(props) {
         <div className="card mb-3">
             <Card.Header>
                 <Card.Title>Studenti</Card.Title>
+                <ButtonAdd>Úprava studijní skupiny</ButtonAdd>
             </Card.Header>
             <Card.Body>
                 <ul>
@@ -206,7 +209,6 @@ function ContactInfo(props) {
 }
 
 export function GroupLarge(props) {
-
     return (
         <Card>
             <Card.Header>
