@@ -16,7 +16,7 @@ import { useQueryGQL, Loading, LoadingError } from "../index";
 import { SubjectSmall } from "../studyprogram/subject";
 import { ProgramSmall } from "../studyprogram/studyprogram";
 
-import { ButtonAdd } from "../group/editGroup";
+import { ButtonAdd, EditStudyGroup } from "../group/editGroup";
 
 /** @module Group */
 
@@ -233,8 +233,10 @@ export function GroupLarge(props) {
                         <SeznamPredmetu {...props} />
                     </Col>
                 </Row>
-            </Card.Body>
+                <EditStudyGroup {...props}/>
+            </Card.Body>     
         </Card>
+        
     )
 }
 
@@ -265,6 +267,21 @@ export const GroupLargeStoryBook = (props) => {
             { 'id': 4, 'name': 'Kybernetická bezpečnost' },
             { 'id': 5, 'name': 'Počítačové sítě a jejich bezpečnost' }
         ],
+        'allStudents': [
+            { 'id': 1, 'name': 'Robert Veliký' },
+            { 'id': 2, 'name': 'Antonín Svitáček' },
+            { 'id': 3, 'name': 'David Hruška' },
+            { 'id': 4, 'name': 'Andrea Odehnalová' },
+            { 'id': 5, 'name': 'Pavel Urbánek' },
+            { 'id': 6, 'name': 'Patrik Hvězda' },
+            { 'id': 7, 'name': 'Tomáš Arváv' },
+            { 'id': 8, 'name': 'Jakub Penkava' },
+            { 'id': 9, 'name': 'Tadeáš Novotný' },
+            { 'id': 10, 'name': 'Leopold Skoruša' },     
+            { 'id': 11, 'name': 'Tomáš Kryštof' },
+            { 'id': 12, 'name': 'Tomáš Janíček' },
+            { 'id': 88, 'name': 'David Svoboda' }
+            ],
         'students': [
             { 'id': 1, 'name': 'Honza Bernard' },
             { 'id': 2, 'name': 'Pavel Motol' },
