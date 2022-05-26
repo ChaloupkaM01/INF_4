@@ -143,11 +143,7 @@ export function EditStudyGroup(props) {
                         <GroupStudentsCard students={members} onRemove={deleteStudent} />
                     </Col>
                 </Row>     
-            </Card.Body>
-            <Card.Footer>
-                <ButtonAdd>Uložit</ButtonAdd>
-                <ButtonRemove>Zrušit</ButtonRemove>
-            </Card.Footer> 
+            </Card.Body>           
         </Card>
     )
 }

@@ -183,7 +183,7 @@ function SeznamStudentu(props) {
             <Card.Header>
                 <Row>
                     <Col><Card.Title>Studenti</Card.Title></Col>
-                    <Col className="d-flex justify-content-end"><ButtonAdd className="d-flex justify-content-end">Upravit</ButtonAdd></Col>              
+                    <Col className="d-flex justify-content-end"><ButtonAdd className="d-flex justify-content-end" onClick={(currentState) => props.onShow(!currentState)}>Upravit</ButtonAdd></Col>              
                 </Row>          
             </Card.Header>
             <Card.Body>
@@ -211,35 +211,67 @@ function ContactInfo(props) {
 }
 
 export function GroupLarge(props) {
-    return (
-        <Card>
-            <Card.Header>
-                <Card.Title>
-                    Karta učební skupiny
-                </Card.Title>
-            </Card.Header>
-            <Card.Body>
-                <Row>
-                    <Col md={3}>
-                        <GroupMedium {...props} /> <br/>
-                        <ContactInfo {...props} />
+    const [show, toggleShow] = React.useState(props.editVisible)
 
-                    </Col>
-                    <Col md={2}>
-                        <SeznamStudentu {...props} />
-                    </Col>
-                    <Col md={5}>
-                        <RozvrhMedium {...props}/>
-                    </Col>
-                    <Col md={2}>
-                        <SeznamPredmetu {...props} />
-                    </Col>
-                </Row>
-                <EditStudyGroup {...props}/>
-            </Card.Body>     
-        </Card>
-        
-    )
+    if(show){
+        return (
+            <Card>
+                <Card.Header>
+                    <Card.Title>
+                        Karta učební skupiny
+                    </Card.Title>
+                </Card.Header>
+                <Card.Body>
+                    <Row>
+                        <Col md={3}>
+                            <GroupMedium {...props} /> <br/>
+                            <ContactInfo {...props} />
+    
+                        </Col>
+                        <Col md={2}>
+                            <SeznamStudentu editShow={toggleShow(show)} {...props} />
+                        </Col>
+                        <Col md={5}>
+                            <RozvrhMedium {...props}/>
+                        </Col>
+                        <Col md={2}>
+                            <SeznamPredmetu {...props} />
+                        </Col>
+                    </Row>
+                    <EditStudyGroup {...props}/>
+                </Card.Body>     
+            </Card>
+        )
+    }
+    else {
+        return (
+            <Card>
+                <Card.Header>
+                    <Card.Title>
+                        Karta učební skupiny
+                    </Card.Title>
+                </Card.Header>
+                <Card.Body>
+                    <Row>
+                        <Col md={3}>
+                            <GroupMedium {...props} /> <br/>
+                            <ContactInfo {...props} />
+    
+                        </Col>
+                        <Col md={2}>
+                            <SeznamStudentu editShow={toggleShow} {...props} />
+                        </Col>
+                        <Col md={5}>
+                            <RozvrhMedium {...props}/>
+                        </Col>
+                        <Col md={2}>
+                            <SeznamPredmetu {...props} />
+                        </Col>
+                    </Row>
+                </Card.Body>     
+            </Card>
+        )
+    }
 }
 
 /**
@@ -251,6 +283,7 @@ export function GroupLarge(props) {
  */
 export const GroupLargeStoryBook = (props) => {
     const extraProps = {
+        'editVisible': false,
         'id': props.id,
         'name': props.name,
         'grade': '3',

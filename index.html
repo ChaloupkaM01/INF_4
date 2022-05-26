@@ -189,11 +189,7 @@
                 setAllMembers(filteredNames)
             }       
         }
-        
-        if (props.show){
-            return null;
-        }
-        console.log(5115)
+    
         return (
             <Card>
                 <CardHeader>Úprava studentů skupiny: {props.name}</CardHeader>
@@ -212,24 +208,29 @@
                             <GroupStudentsCard students={members} onRemove={deleteStudent} />
                         </Col>
                     </Row>     
-                </CardBody>
-                <CardFooter>
-                    <ButtonAdd>Uložit</ButtonAdd>
-                    <ButtonRemove>Zrušit</ButtonRemove>
-                </CardFooter>  
+                </CardBody>  
             </Card>
         )
     }
 
     function PageLarge(props) {      
         const [show, toggleShow] = React.useState(props.editVisible)
-     
-        return (  
+        if(show){
+            return (  
+            <Card>   
+                <ButtonAdd onClick={() => toggleShow(!show)} >Show</ButtonAdd>                    
+            </Card>     
+        ) 
+        }
+        else{
+           return (  
             <Card>   
                 <ButtonAdd onClick={() => toggleShow(!show)} >Show</ButtonAdd>   
                 <EditStudyGroup {...props} />     
             </Card>     
-        )
+        ) 
+        }
+        
     }
 
     function PageStoryBook(props) {
