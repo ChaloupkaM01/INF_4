@@ -1,5 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 
+import React from 'react'
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
@@ -183,7 +184,7 @@ function SeznamStudentu(props) {
             <Card.Header>
                 <Row>
                     <Col><Card.Title>Studenti</Card.Title></Col>
-                    <Col className="d-flex justify-content-end"><ButtonAdd className="d-flex justify-content-end" onClick={(currentState) => props.onShow(!currentState)}>Upravit</ButtonAdd></Col>              
+                    <Col className="d-flex justify-content-end"><ButtonAdd className="d-flex justify-content-end" onClick={props.onToggleShow}>Upravit</ButtonAdd></Col>              
                 </Row>          
             </Card.Header>
             <Card.Body>
@@ -212,6 +213,9 @@ function ContactInfo(props) {
 
 export function GroupLarge(props) {
     const [show, toggleShow] = React.useState(props.editVisible)
+    const changeShow = () => {
+        toggleShow(!show)
+    }
 
     if(show){
         return (
@@ -229,7 +233,7 @@ export function GroupLarge(props) {
     
                         </Col>
                         <Col md={2}>
-                            <SeznamStudentu editShow={toggleShow(show)} {...props} />
+                            <SeznamStudentu onToggleShow={changeShow} {...props} />
                         </Col>
                         <Col md={5}>
                             <RozvrhMedium {...props}/>
@@ -259,7 +263,7 @@ export function GroupLarge(props) {
     
                         </Col>
                         <Col md={2}>
-                            <SeznamStudentu editShow={toggleShow} {...props} />
+                            <SeznamStudentu onToggleShow={changeShow} {...props} />
                         </Col>
                         <Col md={5}>
                             <RozvrhMedium {...props}/>
