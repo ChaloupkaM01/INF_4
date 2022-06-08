@@ -77,7 +77,7 @@ function GroupStudentsCard(props) {
 export function EditStudyGroup(props) {
     const [members, setMembers] = React.useState(props.students) 
     const deleteStudent = (id, name) => {
-        if(window.confirm("Chcete odebrat studenta/ku" + name + "?")){
+        if(window.confirm("Chcete odebrat studenta/ku " + name + "?")){
             const selectedStudents = members.filter(
                 (item) => item.id !== id
             )
@@ -92,7 +92,7 @@ export function EditStudyGroup(props) {
 
     const [allMembers, setAllMembers] = React.useState([])
     const addStudent = (id, name) => {      
-        if(window.confirm("Chcete přidat studenta/ku" + name + "?")){
+        if(window.confirm("Chcete přidat studenta/ku " + name + "?")){
             const selectedStudents = allMembers.filter(
                 (item) => item.id === id
             )
