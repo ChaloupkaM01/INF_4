@@ -77,33 +77,33 @@ function GroupStudentsCard(props) {
 export function EditStudyGroup(props) {
     const [members, setMembers] = React.useState(props.students) 
     const deleteStudent = (id, name) => {
-        alert("Student/ka " + name + " bude odstraněn/a.")
+        if(window.confirm("Chcete odebrat studenta/ku" + name + "?")){
+            const selectedStudents = members.filter(
+                (item) => item.id !== id
+            )
 
-        const selectedStudents = members.filter(
-            (item) => item.id !== id
-        )
+            const selectedAllStudents = members.filter(
+                (item) => item.id === id
+            )
 
-        const selectedAllStudents = members.filter(
-            (item) => item.id === id
-        )
-
-        setMembers(selectedStudents)
+            setMembers(selectedStudents)
+        }
     }
 
     const [allMembers, setAllMembers] = React.useState([])
-    const addStudent = (id, name) => {
-        alert("Student/ka " + name + " bude přidán/a.")          
+    const addStudent = (id, name) => {      
+        if(window.confirm("Chcete přidat studenta/ku" + name + "?")){
+            const selectedStudents = allMembers.filter(
+                (item) => item.id === id
+            )
 
-        const selectedStudents = allMembers.filter(
-            (item) => item.id === id
-        )
+            const selectedAllStudents = allMembers.filter(
+                (item) => item.id !== id
+            ) 
 
-        const selectedAllStudents = allMembers.filter(
-            (item) => item.id !== id
-        ) 
-        
-        setAllMembers(selectedAllStudents)
-        setMembers([...members, ...selectedStudents])
+            setAllMembers(selectedAllStudents)
+            setMembers([...members, ...selectedStudents])
+        }           
     }
 
     const inputHandler = (inputTxt) => {
