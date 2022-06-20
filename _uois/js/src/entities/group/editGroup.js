@@ -92,18 +92,24 @@ export function EditStudyGroup(props) {
 
     const [allMembers, setAllMembers] = React.useState([])
     const addStudent = (id, name) => {      
-        if(window.confirm("Chcete přidat studenta/ku " + name + "?")){
-            const selectedStudents = allMembers.filter(
-                (item) => item.id === id
-            )
+        if(window.confirm("Chcete přidat studenta/ku " + name + "?")) {
+            if(!members.some((item) => item.id === id)) {
+                const selectedStudents = allMembers.filter(
+                    (item) => item.id === id
+                )
 
-            const selectedAllStudents = allMembers.filter(
-                (item) => item.id !== id
-            ) 
+                const selectedAllStudents = allMembers.filter(
+                    (item) => item.id !== id
+                ) 
 
-            setAllMembers(selectedAllStudents)
-            setMembers([...members, ...selectedStudents])
-        }           
+                setAllMembers(selectedAllStudents)
+                setMembers([...members, ...selectedStudents])
+            }
+
+            else {
+                alert("Student/ka už je ve skupině, nebude přidán/a.")
+            }
+        }    
     }
 
     const inputHandler = (inputTxt) => {

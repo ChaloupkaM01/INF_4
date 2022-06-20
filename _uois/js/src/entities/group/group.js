@@ -307,21 +307,6 @@ export const GroupLargeStoryBook = (props) => {
             { 'id': 5, 'name': 'Počítačové sítě a jejich bezpečnost' }
         ],
         'allStudents': [
-            { 'id': 1, 'name': 'Robert Veliký' },
-            { 'id': 2, 'name': 'Antonín Svitáček' },
-            { 'id': 3, 'name': 'David Hruška' },
-            { 'id': 4, 'name': 'Andrea Odehnalová' },
-            { 'id': 5, 'name': 'Pavel Urbánek' },
-            { 'id': 6, 'name': 'Patrik Hvězda' },
-            { 'id': 7, 'name': 'Tomáš Arváv' },
-            { 'id': 8, 'name': 'Jakub Penkava' },
-            { 'id': 9, 'name': 'Tadeáš Novotný' },
-            { 'id': 10, 'name': 'Leopold Skoruša' },     
-            { 'id': 11, 'name': 'Tomáš Kryštof' },
-            { 'id': 12, 'name': 'Tomáš Janíček' },
-            { 'id': 88, 'name': 'David Svoboda' }
-            ],
-        'students': [
             { 'id': 1, 'name': 'Honza Bernard' },
             { 'id': 2, 'name': 'Pavel Motol' },
             { 'id': 3, 'name': 'Dominik Vaněk' },
@@ -333,7 +318,22 @@ export const GroupLargeStoryBook = (props) => {
             { 'id': 9, 'name': 'Jiří Grau' },
             { 'id': 10, 'name': 'Teodor Velký' },
             { 'id': 11, 'name': 'Alexandr Veliký' },
-            { 'id': 22, 'name': 'Aleš Máchal' }
+            { 'id': 12, 'name': 'Aleš Máchal' },
+            { 'id': 13, 'name': 'Robert Veliký' },
+            { 'id': 14, 'name': 'Antonín Svitáček' },
+            { 'id': 15, 'name': 'David Hruška' },
+            { 'id': 16, 'name': 'Andrea Odehnalová' },
+            { 'id': 17, 'name': 'Pavel Urbánek' },
+            { 'id': 18, 'name': 'Patrik Hvězda' },
+            { 'id': 19, 'name': 'Tomáš Arváv' },
+            { 'id': 20, 'name': 'Jakub Penkava' }
+            ],
+        'students': [
+            { 'id': 1, 'name': 'Honza Bernard' },
+            { 'id': 2, 'name': 'Pavel Motol' },
+            { 'id': 7, 'name': 'Jiřina Stará' },
+            { 'id': 13, 'name': 'Robert Veliký' },
+            { 'id': 17, 'name': 'Pavel Urbánek' },
         ]
     }
 
