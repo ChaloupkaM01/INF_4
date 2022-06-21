@@ -1,4 +1,4 @@
-ZADÁNÍ 6
+Projekt č.7
 
 S využitím knihovny ReactJS vytvořte komponentu pro správu studentů ve studijní skupině 
 (přiřazení studenta do studijní skupiny, odstranění studenta ze skupiny apod.). 
