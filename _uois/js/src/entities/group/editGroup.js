@@ -3,6 +3,13 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import React from 'react'
 
+
+/** @module EditGroup */
+
+/**
+ * Represents adding button for each searched student
+ * @function
+ */
 export function ButtonAdd(props) {
     return (
         <button className="btn btn-outline-success btn-sm" 
@@ -12,6 +19,10 @@ export function ButtonAdd(props) {
         )
 }
 
+/**
+ * Represents remove button for each student from current study group
+ * @function
+ */
 function ButtonRemove(props) {
     return (
         <button className="btn btn-outline-danger btn-sm" 
@@ -21,6 +32,10 @@ function ButtonRemove(props) {
         )
 }
 
+/**
+ * Represents searching bar that is used for searching of specific student
+ * @function
+ */
 function SearchBar(props){
     return(
         <input className="form-control mb-3"
@@ -30,6 +45,10 @@ function SearchBar(props){
     )
 }
 
+/**
+ * Creates and renders part of page where are searched students, that can be added to current study group
+ * @function
+ */
 function SearchedStudentsCard(props) {
     let allStudents = props.allStudents.map(
         (item,index) => (
@@ -52,6 +71,10 @@ function SearchedStudentsCard(props) {
     )   
 }
 
+/**
+ * Creates and renders part of page where are students from current study group, that can be removed
+ * @function
+ */
 function GroupStudentsCard(props) {
     let students = props.students.map(
         (item,index) => (
@@ -74,6 +97,10 @@ function GroupStudentsCard(props) {
     )
 }
 
+/**
+ * Renders whole page with search bar, searched and current students. This function also handles searching, adding and removing of students
+ * @function
+ */
 export function EditStudyGroup(props) {
     const [members, setMembers] = React.useState(props.students) 
     const deleteStudent = (id, name) => {
