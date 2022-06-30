@@ -28,6 +28,7 @@
         <article>
             <pre class="prettyprint source linenums"><code>import { Link, useParams } from "react-router-dom";
 
+import React from 'react'
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
@@ -43,6 +44,8 @@ import { root } from '../index';
 import { useQueryGQL, Loading, LoadingError } from "../index";
 import { SubjectSmall } from "../studyprogram/subject";
 import { ProgramSmall } from "../studyprogram/studyprogram";
+
+import { ButtonAdd, EditStudyGroup } from "../group/editGroup";
 
 /** @module Group */
 
@@ -207,7 +210,10 @@ function SeznamStudentu(props) {
     return (
         &lt;div className="card mb-3">
             &lt;Card.Header>
-                &lt;Card.Title>Studenti&lt;/Card.Title>
+                &lt;Row>
+                    &lt;Col>&lt;Card.Title>Studenti&lt;/Card.Title>&lt;/Col>
+                    &lt;Col className="d-flex justify-content-end">&lt;ButtonAdd className="d-flex justify-content-end" onClick={props.onToggleShow}>Upravit&lt;/ButtonAdd>&lt;/Col>              
+                &lt;/Row>          
             &lt;/Card.Header>
             &lt;Card.Body>
                 &lt;ul>
@@ -234,34 +240,70 @@ function ContactInfo(props) {
 }
 
 export function GroupLarge(props) {
+    const [show, toggleShow] = React.useState(props.editVisible)
+    const changeShow = () => {
+        toggleShow(!show)
+    }
 
-    return (
-        &lt;Card>
-            &lt;Card.Header>
-                &lt;Card.Title>
-                    Karta učební skupiny
-                &lt;/Card.Title>
-            &lt;/Card.Header>
-            &lt;Card.Body>
-                &lt;Row>
-                    &lt;Col md={3}>
-                        &lt;GroupMedium {...props} /> &lt;br/>
-                        &lt;ContactInfo {...props} />
-
-                    &lt;/Col>
-                    &lt;Col md={2}>
-                        &lt;SeznamStudentu {...props} />
-                    &lt;/Col>
-                    &lt;Col md={5}>
-                        &lt;RozvrhMedium {...props}/>
-                    &lt;/Col>
-                    &lt;Col md={2}>
-                        &lt;SeznamPredmetu {...props} />
-                    &lt;/Col>
-                &lt;/Row>
-            &lt;/Card.Body>
-        &lt;/Card>
-    )
+    if(show){
+        return (
+            &lt;Card>
+                &lt;Card.Header>
+                    &lt;Card.Title>
+                        Karta učební skupiny
+                    &lt;/Card.Title>
+                &lt;/Card.Header>
+                &lt;Card.Body>
+                    &lt;Row>
+                        &lt;Col md={3}>
+                            &lt;GroupMedium {...props} /> &lt;br/>
+                            &lt;ContactInfo {...props} />
+    
+                        &lt;/Col>
+                        &lt;Col md={2}>
+                            &lt;SeznamStudentu onToggleShow={changeShow} {...props} />
+                        &lt;/Col>
+                        &lt;Col md={5}>
+                            &lt;RozvrhMedium {...props}/>
+                        &lt;/Col>
+                        &lt;Col md={2}>
+                            &lt;SeznamPredmetu {...props} />
+                        &lt;/Col>
+                    &lt;/Row>
+                    &lt;EditStudyGroup {...props}/>
+                &lt;/Card.Body>     
+            &lt;/Card>
+        )
+    }
+    else {
+        return (
+            &lt;Card>
+                &lt;Card.Header>
+                    &lt;Card.Title>
+                        Karta učební skupiny
+                    &lt;/Card.Title>
+                &lt;/Card.Header>
+                &lt;Card.Body>
+                    &lt;Row>
+                        &lt;Col md={3}>
+                            &lt;GroupMedium {...props} /> &lt;br/>
+                            &lt;ContactInfo {...props} />
+    
+                        &lt;/Col>
+                        &lt;Col md={2}>
+                            &lt;SeznamStudentu onToggleShow={changeShow} {...props} />
+                        &lt;/Col>
+                        &lt;Col md={5}>
+                            &lt;RozvrhMedium {...props}/>
+                        &lt;/Col>
+                        &lt;Col md={2}>
+                            &lt;SeznamPredmetu {...props} />
+                        &lt;/Col>
+                    &lt;/Row>
+                &lt;/Card.Body>     
+            &lt;/Card>
+        )
+    }
 }
 
 /**
@@ -273,6 +315,7 @@ export function GroupLarge(props) {
  */
 export const GroupLargeStoryBook = (props) => {
     const extraProps = {
+        'editVisible': false,
         'id': props.id,
         'name': props.name,
         'grade': '3',
@@ -291,7 +334,7 @@ export const GroupLargeStoryBook = (props) => {
             { 'id': 4, 'name': 'Kybernetická bezpečnost' },
             { 'id': 5, 'name': 'Počítačové sítě a jejich bezpečnost' }
         ],
-        'students': [
+        'allStudents': [
             { 'id': 1, 'name': 'Honza Bernard' },
             { 'id': 2, 'name': 'Pavel Motol' },
             { 'id': 3, 'name': 'Dominik Vaněk' },
@@ -303,7 +346,22 @@ export const GroupLargeStoryBook = (props) => {
             { 'id': 9, 'name': 'Jiří Grau' },
             { 'id': 10, 'name': 'Teodor Velký' },
             { 'id': 11, 'name': 'Alexandr Veliký' },
-            { 'id': 22, 'name': 'Aleš Máchal' }
+            { 'id': 12, 'name': 'Aleš Máchal' },
+            { 'id': 13, 'name': 'Robert Veliký' },
+            { 'id': 14, 'name': 'Antonín Svitáček' },
+            { 'id': 15, 'name': 'David Hruška' },
+            { 'id': 16, 'name': 'Andrea Odehnalová' },
+            { 'id': 17, 'name': 'Pavel Urbánek' },
+            { 'id': 18, 'name': 'Patrik Hvězda' },
+            { 'id': 19, 'name': 'Tomáš Arváv' },
+            { 'id': 20, 'name': 'Jakub Penkava' }
+            ],
+        'students': [
+            { 'id': 1, 'name': 'Honza Bernard' },
+            { 'id': 2, 'name': 'Pavel Motol' },
+            { 'id': 7, 'name': 'Jiřina Stará' },
+            { 'id': 13, 'name': 'Robert Veliký' },
+            { 'id': 17, 'name': 'Pavel Urbánek' },
         ]
     }
 
@@ -383,13 +441,13 @@ export const GroupPage = (props) => {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Areal.html">Areal</a></li><li><a href="module-Building.html">Building</a></li><li><a href="module-Department.html">Department</a></li><li><a href="module-Faculty.html">Faculty</a></li><li><a href="module-Group.html">Group</a></li><li><a href="module-Lesson.html">Lesson</a></li><li><a href="module-Room.html">Room</a></li><li><a href="module-Student.html">Student</a></li><li><a href="module-StudyProgram.html">StudyProgram</a></li><li><a href="module-Subject.html">Subject</a></li><li><a href="module-Teacher.html">Teacher</a></li><li><a href="module-TimeTable.html">TimeTable</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Areal.html">Areal</a></li><li><a href="module-Building.html">Building</a></li><li><a href="module-Department.html">Department</a></li><li><a href="module-EditGroup.html">EditGroup</a></li><li><a href="module-Faculty.html">Faculty</a></li><li><a href="module-Group.html">Group</a></li><li><a href="module-Lesson.html">Lesson</a></li><li><a href="module-Room.html">Room</a></li><li><a href="module-Student.html">Student</a></li><li><a href="module-StudyProgram.html">StudyProgram</a></li><li><a href="module-Subject.html">Subject</a></li><li><a href="module-Teacher.html">Teacher</a></li><li><a href="module-TimeTable.html">TimeTable</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.10</a> on Thu Mar 31 2022 13:55:05 GMT+0000 (Coordinated Universal Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.10</a> on Thu Jun 30 2022 07:02:01 GMT+0000 (Coordinated Universal Time)
 </footer>
 
 <script> prettyPrint(); </script>
