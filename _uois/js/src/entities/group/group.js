@@ -184,7 +184,7 @@ function SeznamStudentu(props) {
             <Card.Header>
                 <Row>
                     <Col><Card.Title>Studenti</Card.Title></Col>
-                    <Col className="d-flex justify-content-end"><ButtonAdd className="d-flex justify-content-end" onClick={props.onToggleShow}>Upravit</ButtonAdd></Col>              
+                    <Col className="d-flex justify-content-end"><ButtonAdd onClick={props.onToggleShow}>Upravit</ButtonAdd></Col>              
                 </Row>          
             </Card.Header>
             <Card.Body>
